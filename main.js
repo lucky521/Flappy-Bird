@@ -21,9 +21,8 @@ var main_state = {
 		var style = {font:"30px Arial", fill:"#ffffff"};
 		this.label_score = this.game.add.text(20, 20, "0", style);
 		
-		var anlu_style = {font:"10px Arial", fill:"#ffffff"};
-		this.anlu = this.game.add.text(330, 20, "Dear Anlu", anlu_style);
-	
+		var anlustyle = {font:"10px Arial", fill:"#ffffff"};
+		this.anlu = this.game.add.text(330, 20, "Dear Anlu", anlustyle);
 		
 		//为小鸟增加sprite
 		this.bird = game.add.sprite(100, 245, 'bird');
@@ -33,6 +32,14 @@ var main_state = {
 		//空格键监听，jump()作为回调函数
 		var space_key = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 		space_key.onDown.add(this.jump, this); 
+		
+		//暂停按钮
+		var pause_key = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+		pause_key.onDown.add(this.pause, this);
+		
+		//关注事件
+		this.game.onPause.add(this.monPause, this);
+		this.game.onResume.add(this.monResume, this);
 		
 		//为水管批量添加sprite
 		this.pipes = game.add.group();
@@ -84,6 +91,27 @@ var main_state = {
 	{
 		this.game.time.events.remove(this.timer);
 		this.game.state.start('main');
+	},
+	
+	
+	pause: function()
+	{
+		if(this.game.paused === true)
+			this.game.paused = false;
+		else
+			this.game.paused = true;
+	},
+	
+	monPause: function()
+	{
+		var pstyle = {font:"40px Arial", fill:"#ffffff"};
+		this.pausefont = this.game.add.text(140, 200, "Pause", pstyle);		
+	},
+	
+	monResume: function()
+	{
+
+		this.game.world.remove(this.pausefont);	
 	},
 
 	add_one_pipe: function(x, y)
