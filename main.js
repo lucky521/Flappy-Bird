@@ -22,7 +22,7 @@ var main_state = {
 		this.label_score = this.game.add.text(20, 20, "0", style);
 		
 		var anlu_style = {font:"10px Arial", fill:"#ffffff"};
-		this.anlu = this.game.add.text(3650, 20, "Dear Anlu", anlu_style);
+		this.anlu = this.game.add.text(365, 20, "Dear Anlu", anlu_style);
 	
 		
 		//为小鸟增加sprite
