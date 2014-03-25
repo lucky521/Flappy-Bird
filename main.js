@@ -20,6 +20,7 @@ var main_state = {
 		this.score = 0;
 		var style = {font:"30px Arial", fill:"#ffffff"};
 		this.label_score = this.game.add.text(20, 20, "0", style);
+		this.anlu = this.game.add.text(380, 20, "Dear Anlu", style);
 	
 		
 		//为小鸟增加sprite
